@@ -1,4 +1,5 @@
-import {Text, View, StyleSheet, TouchableOpacity, Button, Alert} from "react-native";
+import {Text, View, StyleSheet, TouchableOpacity, Button, Alert, Platform} from "react-native";
+
 
 export default function Index() {
     const handleHello = () => {
@@ -18,6 +19,7 @@ export default function Index() {
     }
 
     return (
+
         <View style={styles.container}>
             <Text style={styles.text}>Hello World!</Text>
 
@@ -31,6 +33,7 @@ export default function Index() {
                 title={"Say Papa!"}
             />
         </View>
+
     );
 }
 
@@ -40,12 +43,14 @@ const styles = StyleSheet.create({
         justifyContent: "flex-start",
         alignItems: "center",
         backgroundColor: "#906262",
+
     },
     text: {
         fontSize: 20,
         fontWeight: "bold",
         color: "#FFF",
-        marginBottom: 10
+        marginBottom: 10,
+        marginTop: Platform.OS === 'ios' ? 70 : 0,
     },
     buttonHello: {
         fontSize: 20,
