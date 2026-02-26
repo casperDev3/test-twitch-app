@@ -1,10 +1,10 @@
-import React from "react"
-import {View, Text, StyleSheet, TouchableOpacity} from "react-native";
+import React from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const ClassicCard = () => {
     return (
         <>
-            <View className="bg-red-500 p-5">
+            <View style={styles.card}>
                 <Text style={{
                     fontSize: 24,
                     fontWeight: "bold",

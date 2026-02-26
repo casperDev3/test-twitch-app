@@ -1,5 +1,6 @@
-import {Text, View, StyleSheet, TouchableOpacity, Button, Alert, Platform} from "react-native";
 import ClassicCard from "@/components/ClassicCard";
+import WindCard from "@/components/WindCard";
+import { Alert, Button, Platform, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 
 export default function Index() {
@@ -35,6 +36,7 @@ export default function Index() {
             />
 
             <ClassicCard/>
+            <WindCard/>
         </View>
 
     );
