@@ -1,4 +1,5 @@
 import {Text, View, StyleSheet, TouchableOpacity, Button, Alert, Platform} from "react-native";
+import ClassicCard from "@/components/ClassicCard";
 
 
 export default function Index() {
@@ -32,6 +33,8 @@ export default function Index() {
                 color="#841584"
                 title={"Say Papa!"}
             />
+
+            <ClassicCard/>
         </View>
 
     );
