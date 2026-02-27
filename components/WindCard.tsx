@@ -3,7 +3,7 @@ import { Text, TouchableOpacity, View } from "react-native";
 
 const WindCard = () => {
     return (
-        <View className="p-5 bg-white rounded-xl m-4 shadow-lg shadow-black/10">
+        <View className="p-5 bg-red-50 rounded-xl m-4 shadow-lg shadow-black/10">
             <Text className="text-2xl font-bold text-gray-800 mb-2">
                 Привіт, стрім!
             </Text>
