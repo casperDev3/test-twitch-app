@@ -3,50 +3,58 @@ import WindCard from "@/components/WindCard";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { Alert, Platform, ScrollView, Text, TouchableOpacity, View } from "react-native";
-
+import { useTheme } from "../../utils/themeContext";
 
 export default function Index() {
     const router = useRouter();
+    const { colors } = useTheme();
 
     const handleHello = () => {
-        Alert.alert('Привіт!', 'Ви натиснули кнопку Hello', [
-            {
-                text: 'Скасувати',
-                onPress: () => console.log('Cancel Pressed'),
-                style: 'cancel',
-            },
-            {text: 'OK', onPress: () => console.log('OK Pressed')},
+        Alert.alert("Привіт!", "Ви натиснули кнопку Hello", [
+            { text: "Скасувати", style: "cancel" },
+            { text: "OK" },
         ]);
-    }
+    };
 
     const handlePapa = () => {
         Alert.alert("Papa!", "Це друга кнопка");
-    }
+    };
 
     return (
-        <View className="flex-1 bg-slate-50">
-            <ScrollView 
-                className="flex-1" 
-                showsVerticalScrollIndicator={false}
-            >
+        <View className="flex-1" style={{ backgroundColor: colors.bg }}>
+            <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
                 {/* Hero Section */}
-                <View className="bg-white pb-8">
-                    <View className={`px-6 ${Platform.OS === 'ios' ? 'pt-16' : 'pt-12'}`}>
+                <View style={{ backgroundColor: colors.card, paddingBottom: 32 }}>
+                    <View className={`px-6 ${Platform.OS === "ios" ? "pt-16" : "pt-12"}`}>
                         {/* Header */}
                         <View className="flex-row justify-between items-center mb-8">
                             <View>
-                                <Text className="text-slate-500 text-sm font-medium mb-1">
+                                <Text
+                                    className="text-sm font-medium mb-1"
+                                    style={{ color: colors.textMuted }}
+                                >
                                     Доброго дня
                                 </Text>
-                                <Text className="text-slate-900 text-3xl font-bold">
+                                <Text
+                                    className="text-3xl font-bold"
+                                    style={{ color: colors.text }}
+                                >
                                     Головна
                                 </Text>
                             </View>
                             <TouchableOpacity
-                                className="bg-slate-100 w-12 h-12 rounded-full items-center justify-center border-2 border-slate-200"
-                                onPress={() => router.push('/settings')}
+                                className="w-12 h-12 rounded-full items-center justify-center border-2"
+                                style={{
+                                    backgroundColor: colors.iconBg,
+                                    borderColor: colors.border,
+                                }}
+                                onPress={() => router.push("/settings")}
                             >
-                                <Ionicons name="settings-outline" size={22} color="#334155" />
+                                <Ionicons
+                                    name="settings-outline"
+                                    size={22}
+                                    color={colors.textSecondary}
+                                />
                             </TouchableOpacity>
                         </View>
 
@@ -71,14 +79,20 @@ export default function Index() {
                 {/* Main Content */}
                 <View className="px-6 -mt-4">
                     {/* Quick Actions Card */}
-                    <View className="bg-white rounded-3xl p-6 shadow-lg shadow-black/5 mb-6 border border-slate-100">
-                        <Text className="text-slate-800 text-xl font-bold mb-4">
+                    <View
+                        className="rounded-3xl p-6 mb-6 border shadow-lg shadow-black/5"
+                        style={{ backgroundColor: colors.card, borderColor: colors.border }}
+                    >
+                        <Text
+                            className="text-xl font-bold mb-4"
+                            style={{ color: colors.text }}
+                        >
                             Швидкі дії
                         </Text>
-                        
+
                         <View className="gap-3">
-                            <TouchableOpacity 
-                                className="bg-blue-500 px-6 py-4 rounded-2xl flex-row items-center justify-between active:scale-98 shadow-sm shadow-blue-500/20"
+                            <TouchableOpacity
+                                className="bg-blue-500 px-6 py-4 rounded-2xl flex-row items-center justify-between shadow-sm shadow-blue-500/20"
                                 onPress={handleHello}
                             >
                                 <View className="flex-row items-center gap-3">
@@ -86,9 +100,7 @@ export default function Index() {
                                         <Ionicons name="hand-left-outline" size={20} color="white" />
                                     </View>
                                     <View>
-                                        <Text className="text-white text-base font-bold">
-                                            Say Hello
-                                        </Text>
+                                        <Text className="text-white text-base font-bold">Say Hello</Text>
                                         <Text className="text-blue-100 text-xs">
                                             Натисніть для привітання
                                         </Text>
@@ -98,7 +110,7 @@ export default function Index() {
                             </TouchableOpacity>
 
                             <TouchableOpacity
-                                className="bg-purple-500 px-6 py-4 rounded-2xl flex-row items-center justify-between active:scale-98 shadow-sm shadow-purple-500/20"
+                                className="bg-purple-500 px-6 py-4 rounded-2xl flex-row items-center justify-between shadow-sm shadow-purple-500/20"
                                 onPress={handlePapa}
                             >
                                 <View className="flex-row items-center gap-3">
@@ -106,9 +118,7 @@ export default function Index() {
                                         <Ionicons name="star-outline" size={20} color="white" />
                                     </View>
                                     <View>
-                                        <Text className="text-white text-base font-bold">
-                                            Say Papa
-                                        </Text>
+                                        <Text className="text-white text-base font-bold">Say Papa</Text>
                                         <Text className="text-purple-100 text-xs">
                                             Друга дія для тесту
                                         </Text>
@@ -137,16 +147,18 @@ export default function Index() {
                     </View>
 
                     {/* Section Title */}
-                    <Text className="text-slate-800 text-xl font-bold mb-4">
+                    <Text
+                        className="text-xl font-bold mb-4"
+                        style={{ color: colors.text }}
+                    >
                         Компоненти
                     </Text>
                 </View>
 
                 {/* Example Cards */}
-                <ClassicCard/>
-                <WindCard/>
+                <ClassicCard />
+                <WindCard />
 
-                {/* Bottom Spacing */}
                 <View className="h-8" />
             </ScrollView>
         </View>

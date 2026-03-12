@@ -1,21 +1,24 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
+import { useTheme } from "../../utils/themeContext";
 
 export default function TabsLayout() {
+    const { colors } = useTheme();
+
     return (
         <Tabs
             screenOptions={{
                 headerShown: false,
                 tabBarStyle: {
-                    backgroundColor: "#ffffff",
-                    borderTopColor: "#e2e8f0",
+                    backgroundColor: colors.tabBar,
+                    borderTopColor: colors.tabBarBorder,
                     borderTopWidth: 1,
                     height: 80,
                     paddingBottom: 20,
                     paddingTop: 10,
                 },
-                tabBarActiveTintColor: "#6366f1",
-                tabBarInactiveTintColor: "#94a3b8",
+                tabBarActiveTintColor: colors.accent,
+                tabBarInactiveTintColor: colors.textMuted,
                 tabBarLabelStyle: {
                     fontSize: 11,
                     fontWeight: "600",
@@ -37,6 +40,15 @@ export default function TabsLayout() {
                     title: "Огляд",
                     tabBarIcon: ({ color, size }) => (
                         <Ionicons name="compass-outline" size={size} color={color} />
+                    ),
+                }}
+            />
+            <Tabs.Screen
+                name="news"
+                options={{
+                    title: "Новини",
+                    tabBarIcon: ({ color, size }) => (
+                        <Ionicons name="newspaper-outline" size={size} color={color} />
                     ),
                 }}
             />
