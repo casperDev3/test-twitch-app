@@ -1,3 +1,4 @@
+import Badge from "@/components/Badge";
 import { Ionicons } from "@expo/vector-icons";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import {
@@ -57,30 +58,19 @@ export default function NewsDetailScreen() {
                 />
 
                 <View className="px-6 py-6">
-                    {/* Badge */}
+                    {/* Badges */}
                     <View className="flex-row items-center gap-2 mb-4">
-                        <View
-                            className="px-3 py-1 rounded-full"
-                            style={{ backgroundColor: colors.accent + "20" }}
-                        >
-                            <Text
-                                className="text-xs font-bold"
-                                style={{ color: colors.accent }}
-                            >
-                                JSONPlaceholder
-                            </Text>
-                        </View>
-                        <View
-                            className="px-3 py-1 rounded-full"
-                            style={{ backgroundColor: colors.iconBg }}
-                        >
-                            <Text
-                                className="text-xs"
-                                style={{ color: colors.textSecondary }}
-                            >
-                                Post #{article.id}
-                            </Text>
-                        </View>
+                        <Badge
+                            label="JSONPlaceholder"
+                            bgColor={colors.accent + "20"}
+                            textColor={colors.accent}
+                            bold
+                        />
+                        <Badge
+                            label={`Post #${article.id}`}
+                            bgColor={colors.iconBg}
+                            textColor={colors.textSecondary}
+                        />
                     </View>
 
                     {/* Title */}
