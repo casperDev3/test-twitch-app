@@ -1,8 +1,9 @@
 import ArticleCard from "@/components/ArticleCard";
 import ScreenHeader from "@/components/ScreenHeader";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 import { Article, setArticles } from "@/utils/newsStore";
 import { Ionicons } from "@expo/vector-icons";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
     ActivityIndicator,
     FlatList,
@@ -13,12 +14,15 @@ import {
 import { useTheme } from "../../utils/themeContext";
 
 const API_URL = "https://jsonplaceholder.typicode.com/posts";
+const SCROLL_THRESHOLD = 200;
 
 export default function NewsScreen() {
     const { colors } = useTheme();
     const [articles, setLocalArticles] = useState<Article[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [showScrollTop, setShowScrollTop] = useState(false);
+    const listRef = useRef<FlatList>(null);
 
     useEffect(() => {
         fetchNews();
@@ -37,6 +41,10 @@ export default function NewsScreen() {
         } finally {
             setLoading(false);
         }
+    };
+
+    const scrollToTop = () => {
+        listRef.current?.scrollToOffset({ offset: 0, animated: true });
     };
 
     if (loading) {
@@ -67,9 +75,12 @@ export default function NewsScreen() {
     return (
         <View className="flex-1" style={{ backgroundColor: colors.bg }}>
             <FlatList
+                ref={listRef}
                 data={articles}
                 keyExtractor={(item) => item.id.toString()}
                 showsVerticalScrollIndicator={false}
+                onScroll={(e) => setShowScrollTop(e.nativeEvent.contentOffset.y > SCROLL_THRESHOLD)}
+                scrollEventThrottle={16}
                 ListHeaderComponent={
                     <ScreenHeader
                         subtitle="Актуальне"
@@ -82,6 +93,7 @@ export default function NewsScreen() {
                 )}
                 contentContainerStyle={{ paddingBottom: 20, paddingTop: 16 }}
             />
+            <ScrollToTopButton visible={showScrollTop} onPress={scrollToTop} />
         </View>
     );
 }
