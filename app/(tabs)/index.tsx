@@ -1,9 +1,13 @@
 import ClassicCard from "@/components/ClassicCard";
 import WindCard from "@/components/WindCard";
+import { Ionicons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 import { Alert, Platform, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 
 export default function Index() {
+    const router = useRouter();
+
     const handleHello = () => {
         Alert.alert('Привіт!', 'Ви натиснули кнопку Hello', [
             {
@@ -16,7 +20,7 @@ export default function Index() {
     }
 
     const handlePapa = () => {
-        Alert.alert("Papa!", "Це друга кнопка 🎉");
+        Alert.alert("Papa!", "Це друга кнопка");
     }
 
     return (
@@ -38,9 +42,12 @@ export default function Index() {
                                     Головна
                                 </Text>
                             </View>
-                            <View className="bg-slate-100 w-12 h-12 rounded-full items-center justify-center border-2 border-slate-200">
-                                <Text className="text-slate-700 text-lg font-bold">⚙︎</Text>
-                            </View>
+                            <TouchableOpacity
+                                className="bg-slate-100 w-12 h-12 rounded-full items-center justify-center border-2 border-slate-200"
+                                onPress={() => router.push('/settings')}
+                            >
+                                <Ionicons name="settings-outline" size={22} color="#334155" />
+                            </TouchableOpacity>
                         </View>
 
                         {/* Stats Cards */}
@@ -76,7 +83,7 @@ export default function Index() {
                             >
                                 <View className="flex-row items-center gap-3">
                                     <View className="bg-white/20 w-10 h-10 rounded-full items-center justify-center border-2 border-white/30">
-                                        <Text className="text-white text-base font-bold">✋</Text>
+                                        <Ionicons name="hand-left-outline" size={20} color="white" />
                                     </View>
                                     <View>
                                         <Text className="text-white text-base font-bold">
@@ -87,16 +94,16 @@ export default function Index() {
                                         </Text>
                                     </View>
                                 </View>
-                                <Text className="text-white text-xl font-bold">→</Text>
+                                <Ionicons name="arrow-forward-outline" size={20} color="white" />
                             </TouchableOpacity>
 
-                            <TouchableOpacity 
+                            <TouchableOpacity
                                 className="bg-purple-500 px-6 py-4 rounded-2xl flex-row items-center justify-between active:scale-98 shadow-sm shadow-purple-500/20"
                                 onPress={handlePapa}
                             >
                                 <View className="flex-row items-center gap-3">
                                     <View className="bg-white/20 w-10 h-10 rounded-full items-center justify-center border-2 border-white/30">
-                                        <Text className="text-white text-lg font-bold">★</Text>
+                                        <Ionicons name="star-outline" size={20} color="white" />
                                     </View>
                                     <View>
                                         <Text className="text-white text-base font-bold">
@@ -107,7 +114,7 @@ export default function Index() {
                                         </Text>
                                     </View>
                                 </View>
-                                <Text className="text-white text-xl font-bold">→</Text>
+                                <Ionicons name="arrow-forward-outline" size={20} color="white" />
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -116,7 +123,7 @@ export default function Index() {
                     <View className="bg-amber-50 rounded-2xl p-5 mb-6 border-2 border-amber-200">
                         <View className="flex-row items-start gap-3">
                             <View className="bg-amber-400 w-10 h-10 rounded-full items-center justify-center">
-                                <Text className="text-white text-xl font-bold">i</Text>
+                                <Ionicons name="information-outline" size={20} color="white" />
                             </View>
                             <View className="flex-1">
                                 <Text className="text-amber-900 text-base font-bold mb-1">
